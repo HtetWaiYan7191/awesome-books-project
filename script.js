@@ -36,6 +36,7 @@ function addBook() {
             // book.author = author;
         document.getElementById('title').value = "";
         document.getElementById('author').value = "";
+        let getData = JSON.parse(localStorage.getItem('Books'));
         showBook(storeBook,getData);
     }  
 };
@@ -48,7 +49,7 @@ function addBook() {
 function showBook(storeBook,getData) {
     bookContainer.innerHTML = ``;
     if(getData !== null){
-        getData.forEach(bookData => {
+        getData.forEach((bookData,index) => {
             let addedBook = document.createElement('div');
             let bookName = `
             <div class="books d-flex justify-content-between align-items-center p-3">
@@ -56,8 +57,7 @@ function showBook(storeBook,getData) {
                 <span>"${bookData.title}"</span>
                 <span> by ${bookData.author}</span>
             </div>
-            
-            <button class="btn remove-btn">Remove</button>
+            <button class="btn remove-btn" onclick="removeBook(${index})">Remove</button>
         </div>
             `;
             addedBook.innerHTML = bookName;
@@ -65,23 +65,16 @@ function showBook(storeBook,getData) {
         })
     }
     else {
-      return;
+      return ;
     }
- 
-        const removeBookBtn = document.querySelectorAll('.remove-btn');
-        removeBookBtn.forEach((btn) => {
-            btn.addEventListener('click',(e) => {
-                console.log(e.target)
-                // e.target.parentNode.remove();
-                // let removeTitle = e.target.parentNode.firstElementChild.firstElementChild.textContent;
-                // // storeBook.pop();
-                // let data = localStorage.getItem("Books");
-                // let dataArr = JSON.parse(data);
-                // newArr = dataArr.filter(element => {
-                //     return element.title !== removeTitle;
-            // });
-        })
-    });
+}
+
+function removeBook(index) {
+    // bookCollection.books.splice(index, 1);
+    getData.splice(index,1);
+    localStorage.setItem('Books',JSON.stringify(getData));
+    showBook(storeBook,getData)
+     
 }
 addBookBtn.addEventListener('click',addBook)
 
