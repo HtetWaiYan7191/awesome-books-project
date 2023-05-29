@@ -26,6 +26,10 @@ function addBook() {
         }
         const book = Object.assign({},newBook);
         storeBook.push(book)
+        const storeBookStorage = {
+            books:storeBook,
+        };
+        localStorage.setItem('Books',JSON.stringify(storeBook));
             // book.title = title;
             // book.author = author;
         document.getElementById('title').value = "";
@@ -41,7 +45,11 @@ function showBook(storeBook) {
         let addedBook = document.createElement('div');
         let data = `
         <div class="books d-flex justify-content-between align-items-center p-3">
-        <h5>"${book.title}" by ${book.author}</h5>
+        <div class="title-author">
+            <span>"${book.title}"</span>
+            <span> by ${book.author}</span>
+        </div>
+        
         <button class="btn remove-btn">Remove</button>
     </div>
         `;
@@ -51,7 +59,15 @@ function showBook(storeBook) {
         removeBookBtn.forEach((btn) => {
             btn.addEventListener('click',(e) => {
                 e.target.parentNode.remove();
-                storeBook.pop();
+                let removeTitle = e.target.parentNode.firstElementChild.firstElementChild.textContent;
+                // storeBook.pop();
+                let data = localStorage.getItem("Books");
+                let dataArr = JSON.parse(data);
+                console.log(dataArr)
+                newArr = dataArr.filter(element =>  {
+                    element.title != removeTitle ;
+                })
+                console.log(newArr)
             });
         })
     });
@@ -84,4 +100,8 @@ listContact.addEventListener('click',() => {
     addBookSection.style.display = "none";
     mainSection.style.display = "none";
 })
+
+// let data = localStorage.getItem("Books");
+// let dataArr = JSON.parse(data);
+// console.log(dataArr[0].title)
 
