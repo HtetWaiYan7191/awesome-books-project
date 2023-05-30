@@ -4,13 +4,13 @@ const storeBook = [];
 const bookContainer = document.querySelector('.books-container');
 const errorMess = document.getElementById('error-message');
 let getData = JSON.parse(localStorage.getItem('Books')) || { emptyArr: [] };
-//
-// class Books {
-//     constructor (title,author) {
-//         this.title = title;
-//         this.author = author;
-//     }
-// }
+
+class Books {
+  constructor(title, author) {
+    this.title = title;
+    this.author = author;
+  }
+}
 const bookObj = {
   title: 'title',
   author: 'author',
@@ -40,11 +40,7 @@ function addBook() {
   if (title === '' || author === '') {
     errorMess.textContent = 'Please make sure to fill both title and authors names';
   } else {
-    const newBook = {
-      title,
-      author,
-    };
-    const book = { ...newBook };
+    const book = new Books(title, author);
     storeBook.push(book);
     // Adding local storage part
     localStorage.setItem('Books', JSON.stringify(storeBook));
