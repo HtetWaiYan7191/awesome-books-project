@@ -1,84 +1,91 @@
 /* eslint-disable no-unused-vars */
-const addBookBtn = document.getElementById('add-book');
-const storeBook = JSON.parse(localStorage.getItem('Books')) || [];
-const bookContainer = document.querySelector('.books-container');
-const errorMess = document.getElementById('error-message');
+/* eslint-disable max-classes-per-file */
 
-class Books {
+class Book {
   constructor(title, author) {
     this.title = title;
     this.author = author;
   }
 }
+class BookManager {
+  constructor() {
+    this.storeBook = JSON.parse(localStorage.getItem('Books')) || [];
+    this.bookContainer = document.querySelector('.books-container');
+    this.errorMess = document.getElementById('error-message');
+    this.titleInput = document.getElementById('title');
+    this.authorInput = document.getElementById('author');
+    this.addBookBtn = document.getElementById('add-book');
+    this.listBtn = document.getElementById('list');
+    this.listAddBtn = document.getElementById('list-add-new');
+    this.listContactBtn = document.getElementById('list-contact');
+    this.mainSection = document.getElementById('main');
+    this.addBookSection = document.getElementById('add-new');
+    this.contactSection = document.getElementById('contact');
 
-function showBook() {
-  bookContainer.innerHTML = '';
-  storeBook.forEach((bookData, index) => {
-    const addedBook = document.createElement('div');
-    const bookName = `
-      <div class="books d-flex justify-content-between align-items-center p-3">
-        <div class="title-author">
-          <span>"${bookData.title}"</span>
-          <span> by ${bookData.author}</span>
+    this.addBookBtn.addEventListener('click', this.addBook.bind(this));
+    this.listBtn.addEventListener('click', this.showMainSection.bind(this));
+    this.listAddBtn.addEventListener('click', this.showAddBookSection.bind(this));
+    this.listContactBtn.addEventListener('click', this.showContactSection.bind(this));
+
+    this.showBook();
+  }
+
+  showBook() {
+    this.bookContainer.innerHTML = '';
+    this.storeBook.forEach((bookData, index) => {
+      const addedBook = document.createElement('div');
+      const bookName = `
+        <div class="books d-flex justify-content-between align-items-center p-3">
+          <div class="title-author">
+            <span>"${bookData.title}"</span>
+            <span> by ${bookData.author}</span>
+          </div>
+          <button class="btn remove-btn" onclick="bookManager.removeBook(${index})">Remove</button>
         </div>
-        <button class="btn remove-btn" onclick="removeBook(${index})">Remove</button>
-      </div>
-    `;
-    addedBook.innerHTML = bookName;
-    bookContainer.appendChild(addedBook);
-  });
-}
+      `;
+      addedBook.innerHTML = bookName;
+      this.bookContainer.appendChild(addedBook);
+    });
+  }
 
-function addBook() {
-  const titleInput = document.getElementById('title');
-  const authorInput = document.getElementById('author');
-  const title = titleInput.value.trim();
-  const author = authorInput.value.trim();
-  if (title === '' || author === '') {
-    errorMess.textContent = 'Please make sure to fill both title and author names';
-  } else {
-    const book = new Books(title, author);
-    storeBook.push(book);
-    localStorage.setItem('Books', JSON.stringify(storeBook));
-    titleInput.value = '';
-    authorInput.value = '';
-    showBook();
+  addBook() {
+    const title = this.titleInput.value.trim();
+    const author = this.authorInput.value.trim();
+    if (title === '' || author === '') {
+      this.errorMess.textContent = 'Please make sure to fill both title and author names';
+    } else {
+      const book = new Book(title, author);
+      this.storeBook.push(book);
+      localStorage.setItem('Books', JSON.stringify(this.storeBook));
+      this.titleInput.value = '';
+      this.authorInput.value = '';
+      this.showBook();
+    }
+  }
+
+  removeBook(index) {
+    this.storeBook.splice(index, 1);
+    localStorage.setItem('Books', JSON.stringify(this.storeBook));
+    this.showBook();
+  }
+
+  showMainSection() {
+    this.mainSection.style.display = 'block';
+    this.addBookSection.style.display = 'none';
+    this.contactSection.style.display = 'none';
+  }
+
+  showAddBookSection() {
+    this.addBookSection.style.display = 'block';
+    this.mainSection.style.display = 'none';
+    this.contactSection.style.display = 'none';
+  }
+
+  showContactSection() {
+    this.contactSection.style.display = 'block';
+    this.addBookSection.style.display = 'none';
+    this.mainSection.style.display = 'none';
   }
 }
 
-function removeBook(index) {
-  storeBook.splice(index, 1);
-  localStorage.setItem('Books', JSON.stringify(storeBook));
-  showBook();
-}
-
-addBookBtn.addEventListener('click', addBook);
-
-// Control which section to show
-const list = document.getElementById('list');
-const listAdd = document.getElementById('list-add-new');
-const listContact = document.getElementById('list-contact');
-// Three main sections
-const mainSection = document.getElementById('main');
-const addBookSection = document.getElementById('add-new');
-const contactSection = document.getElementById('contact');
-
-list.addEventListener('click', () => {
-  mainSection.style.display = 'block';
-  addBookSection.style.display = 'none';
-  contactSection.style.display = 'none';
-});
-
-listAdd.addEventListener('click', () => {
-  addBookSection.style.display = 'block';
-  mainSection.style.display = 'none';
-  contactSection.style.display = 'none';
-});
-
-listContact.addEventListener('click', () => {
-  contactSection.style.display = 'block';
-  addBookSection.style.display = 'none';
-  mainSection.style.display = 'none';
-});
-
-showBook();
+const bookManager = new BookManager();
