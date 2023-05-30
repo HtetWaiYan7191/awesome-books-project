@@ -3,8 +3,8 @@ const addBookBtn = document.getElementById('add-book');
 const storeBook = [];
 const bookContainer = document.querySelector('.books-container');
 const errorMess = document.getElementById('error-message');
-const getData = JSON.parse(localStorage.getItem('Books')) 
-//|| {emptyArr:[]};
+let getData = JSON.parse(localStorage.getItem('Books')) || { emptyArr: [] };
+//
 // class Books {
 //     constructor (title,author) {
 //         this.title = title;
@@ -16,11 +16,9 @@ const bookObj = {
   author: 'author',
 };
 
-function showBook(storeBook, getData) {
-    
-//   bookContainer.innerHTML = '';
+function showBook() {
+  bookContainer.innerHTML = '';
   getData.forEach((bookData, index) => {
-    console.log(bookData)
     const addedBook = document.createElement('div');
     const bookName = `
               <div class="books d-flex justify-content-between align-items-center p-3">
@@ -37,25 +35,11 @@ function showBook(storeBook, getData) {
 }
 
 function addBook() {
-  const title = document.getElementById('title').value;
-  const author = document.getElementById('author').value;
+  const title = document.getElementById('title').value.trim();
+  const author = document.getElementById('author').value.trim();
   if (title === '' || author === '') {
     errorMess.textContent = 'Please make sure to fill both title and authors names';
-  } 
-//   else if(getData)
-//   {
-//     const prevData = JSON.parse(localStorage.getItem('Books'));
-//     storeBook.push(prevData)
-//     console.log(storeBook)
-//     localStorage.setItem('Books', JSON.stringify(storeBook));
-//     document.getElementById('title').value = '';
-//     document.getElementById('author').value = '';
-//     const getData = JSON.parse(localStorage.getItem('Books'));
-//     bookContainer.textContent = '';
-//     showBook(storeBook, getData);
-//   }
-  
-  else {
+  } else {
     const newBook = {
       title,
       author,
@@ -63,22 +47,18 @@ function addBook() {
     const book = { ...newBook };
     storeBook.push(book);
     // Adding local storage part
-    const storeBookStorage = {
-      books: storeBook,
-    };
     localStorage.setItem('Books', JSON.stringify(storeBook));
     document.getElementById('title').value = '';
     document.getElementById('author').value = '';
-    let getData = JSON.parse(localStorage.getItem('Books'));
-    bookContainer.textContent = '';
-    showBook(storeBook, getData);
+    getData = JSON.parse(localStorage.getItem('Books'));
+    showBook();
   }
 }
 
 function removeBook(index) {
   getData.splice(index, 1);
   localStorage.setItem('Books', JSON.stringify(getData));
-  showBook(storeBook, getData);
+  showBook();
 }
 addBookBtn.addEventListener('click', addBook);
 
@@ -109,7 +89,7 @@ listContact.addEventListener('click', () => {
   mainSection.style.display = 'none';
 });
 
-window.addEventListener('load', showBook(storeBook,getData));
+showBook();
 
 // let data = localStorage.getItem("Books");
 // let dataArr = JSON.parse(data);
