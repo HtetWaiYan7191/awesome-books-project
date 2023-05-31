@@ -21,30 +21,33 @@
                 <li id="list-contact">Contact</li>
             </ul>
         </nav>
-        <div class="date">
-            <span></span>
-        </div>
     </header>
+    <div class="date-container d-flex justify-content-end">
+        
+    </div>
 
     <main id="main" class="">
-        <h1 class="text-center mt-5">All awesome books</h1>
+        <h1 class="text-center">All awesome books</h1>
         <div class="books-container">
         </div>
     </main>
     <section id="add-new">
         <div class="add-new-container p-3">
             <h1 class="text-center mb-4">Add a new book</h1>
-            <form action="" class="w-50 mx-auto">
-                <input type="text" name="title" id="title" class="form-control my-2" placeholder="Title">
-                <input type="text" name="author" id="author" class="form-control my-2" placeholder="Author">
-                <button class="btn" id="add-book" type="button">Add</button>
+            <form action="" class="d-flex justify-content-center w-50 flex-column w-50 mx-auto">
+                <input type="text" name="title" id="title" class=" my-2 w-75 mx-auto" placeholder="Title">
+                <input type="text" name="author" id="author" class=" my-2 w-75 mx-auto" placeholder="Author">
+                <div class="button-container text-start w-75 mx-auto my-2">
+                    <button class="btn" id="add-book" type="button">Add</button>
+                </div>
+               
                 <div id="error-message" class="text-danger"></div>
             </form>
         </div>
     </section>
-    <section id="contact">
+    <section id="contact" class="my-0">
         <div class="contact-container">
-            <h1 class="text-center">Contact information</h1>
+            <h1 class="text-center p-3">Contact information</h1>
             <div class="contact-text w-50 mx-auto mt-4">
                 <p>Do you have any questions or you just want to say "Hello"?<br>You can reach out to us!</p>
                 <ul>
