@@ -10,7 +10,6 @@ let date = new Date();
 date = date.toLocaleString();
 dateContainer.innerHTML = `<span class="p-3 orange">${date}</span>`;
 
-
 class Books {
   constructor(title, author) {
     this.title = title;
@@ -48,9 +47,9 @@ const bookCollection = new BookManager();
 
 function showBook() {
   bookContainer.innerHTML = '';
-  if(bookCollection.getFromLocalStorage().length < 1) {
-    bookContainer.innerHTML = `<p class="text-center p-4 fs-2">There are no Books added yet</p>`;
-  };
+  if (bookCollection.getFromLocalStorage().length < 1) {
+    bookContainer.innerHTML = '<p class="text-center p-4 fs-2">There are no Books added yet</p>';
+  }
   bookCollection.getFromLocalStorage().forEach((bookData, index) => {
     const addedBook = document.createElement('div');
     addedBook.classList.add('added-book-container');
@@ -128,7 +127,7 @@ listContact.addEventListener('click', () => {
   listAdd.classList.remove('orange');
 });
 
-logoText.addEventListener('click',() => {
+logoText.addEventListener('click', () => {
   addBookSection.style.display = 'block';
   mainSection.style.display = 'block';
   contactSection.style.display = 'block';
