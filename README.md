@@ -3,7 +3,7 @@
 # 📗 Table of Contents
 
 - [📗 Table of Contents](#-table-of-contents)
-- [📖 \[My\_Capstone\_Project\] ](#-my_capstone_project-)
+- [📖 \[My\_AwesomeBooks\_Project\] ](#-my_awesomebooks_project-)
   - [🛠 Built With ](#-built-with-)
     - [Tech Stack ](#tech-stack-)
     - [Key Features ](#key-features-)
@@ -23,11 +23,11 @@
 
 <!-- PROJECT DESCRIPTION -->
 
-# 📖 [My_Capstone_Project] <a name="about-project"></a>
+# 📖 [My_AwesomeBooks_Project] <a name="about-project"></a>
 
-It is a web Page for Tech Conference Summit.
+It is a web page to store your awesome books.
 
-**[My_Capstone_Project]** is a project for Tech Conference Summit.
+**[My_AwesomeBooks_Project]** is a project to store your awesome books.
 
 ## 🛠 Built With <a name="built-with"></a>
 
@@ -48,7 +48,7 @@ It is a web Page for Tech Conference Summit.
 
 ### Key Features <a name="key-features"></a>
 
-- **[Conference_submit_website]**
+- **[Add_Your_Favuorite_Books_Titles_And_Authors]**
 - **[Responsive_design_for_any_devices]**
 - **[Interactive_website_using_javascript]**
 
@@ -58,7 +58,7 @@ It is a web Page for Tech Conference Summit.
 <!-- LIVE DEMO -->
 ## 🚀 Live Demo <a name="live-demo"></a>
 
-- [Live Demo Link](https://htetwaiyan7191.github.io/capstone-project/)
+- [Live Demo Link](https://htetwaiyan7191.github.io/awesome-books-project/)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -81,8 +81,8 @@ In order to run this project you need:
 Clone this repository to your desired folder:
 <br>
 <code>
-  git clone https://github.com/HtetWaiYan7191/capstone-project.git
-  cd capstone-project.git
+  git clone https://github.com/HtetWaiYan7191/awesome-books-project.git
+  cd awesome-books-project.git
 </code>
 
 
@@ -137,7 +137,7 @@ You can deploy this project using: GitHub Pages
 
 Contributions, issues, and feature requests are welcome!
 
-Feel free to check the [issues page](https://github.com/HtetWaiYan7191/capstone-project/issues).
+Feel free to check the [issues page](https://github.com/HtetWaiYan7191/awesome-books-project/issues).
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -156,7 +156,7 @@ If you like this project follow me on github and wait for more projects.
 
 ## 🙏 Acknowledgments <a name="acknowledgements"></a>
 
-I would like to acknowledge and give credit to the original designer Cindy Shin on Behance and Microverse.
+I would like to acknowledge and give credit to the Microverse for instructions and resources.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
